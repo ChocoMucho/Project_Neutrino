@@ -3,33 +3,43 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Camera camera;
-    // 진짜 임시
-    public GameObject bulletPrefab;
+    [Header("Input")]
+    [SerializeField] private InputContainer inputContainer;
 
-    void Start()
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float focusMoveSpeed = 2.5f;
+
+    private void Awake()
     {
-        camera = Camera.main;
+        inputContainer = GetComponent<InputContainer>();
     }
 
     void Update()
     {
         Move();
-
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            var bullet = PoolManager.Instance.Spawn(bulletPrefab.GetComponent<Bullet>());
-            bullet.transform.position = transform.position + new Vector3(0,1,0);
-        }
     }
 
     public void Move()
     {
-        // 마우스 위치로 이동
-        // 마우스 위치 2d 월드 좌표로 변환 후에 캐릭터를 그 위치로 이동(Lerp나 SmotthhDamp 사용)
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Vector3 worldPosition = camera.ScreenToWorldPoint(mousePos);
-        worldPosition.z = 0; // z축 고정
-        transform.position = Vector3.Lerp(transform.position, worldPosition, Time.deltaTime * 5f);
+        if (inputContainer == null)
+        {
+            return;
+        }
+
+        Vector2 moveInput = inputContainer.MoveInput;
+        if (moveInput == Vector2.zero)
+        {
+            return;
+        }
+
+        moveInput = moveInput.normalized;
+
+        Debug.Log($"{inputContainer.IsFocusPressed}");
+
+        float currentSpeed = inputContainer.IsFocusPressed ? focusMoveSpeed : moveSpeed;
+
+        Vector3 delta = new Vector3(moveInput.x, moveInput.y, 0f) * (currentSpeed * Time.deltaTime);
+        transform.Translate(delta, Space.World);
     }
 }
