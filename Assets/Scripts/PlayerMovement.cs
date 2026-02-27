@@ -35,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
         moveInput = moveInput.normalized;
 
-        Debug.Log($"{inputContainer.IsFocusPressed}");
-
         float currentSpeed = inputContainer.IsFocusPressed ? focusMoveSpeed : moveSpeed;
 
         Vector3 delta = new Vector3(moveInput.x, moveInput.y, 0f) * (currentSpeed * Time.deltaTime);
