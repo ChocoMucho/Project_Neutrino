@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Input")]
     [SerializeField] private InputContainer inputContainer;
@@ -39,5 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 delta = new Vector3(moveInput.x, moveInput.y, 0f) * (currentSpeed * Time.deltaTime);
         transform.Translate(delta, Space.World);
+
+        // player position clamping
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        viewportPos.x = Mathf.Clamp01(viewportPos.x);
+        viewportPos.y = Mathf.Clamp01(viewportPos.y);
+        transform.position = Camera.main.ViewportToWorldPoint(viewportPos);
     }
 }

@@ -29,6 +29,6 @@ public class EnemyShooter : MonoBehaviour
     {
         var bullet = PoolManager.Instance.Spawn(bulletPrefab.GetComponent<Bullet>());
         bullet.transform.position = muzzleTransform.position;
-        bullet.Init(muzzleTransform.up, 5f, LayerMask.NameToLayer("EnemyBullet"));
+        bullet.Init(muzzleTransform.position, muzzleTransform.up, 5f, LayerMask.NameToLayer("EnemyBullet"));
     }
 }

@@ -22,8 +22,9 @@ public class Bullet : MonoBehaviour, IPoolable
         
     }
 
-    public void Init(Vector2 direction, float speed, int layer) // Outer reset
+    public void Init(Vector2 position, Vector2 direction, float speed, int layer) // Outer reset
     {
+        transform.position = position;
         this.direction = direction;
         this.speed = speed;
         gameObject.layer = layer;
@@ -42,7 +43,7 @@ public class Bullet : MonoBehaviour, IPoolable
     public void CheckOffScreen()
     {
         Vector3 viewPos = _mainCamera.WorldToViewportPoint(transform.position);
-        if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
+        if (viewPos.x < -0.2 || viewPos.x > 1.2 || viewPos.y < -0.2 || viewPos.y > 1.2)
         {
             RequestDespawn();
         }
