@@ -13,6 +13,15 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     [Header("Drop ExpGem Settings")]
     [SerializeField] private GameObject expGemPrefab;
 
+    [Header("FSM")]
+    EnemyStateMachine stateMachine;
+
+    private void Awake()
+    {
+        stateMachine = new EnemyStateMachine(this, enemyDataSO);
+        stateMachine.Init();
+    }
+
     void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
@@ -21,6 +30,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     void Update()
     {
         RotateTowardPlayer();
+        stateMachine.Update();
     }
 
     private void RotateTowardPlayer()
@@ -64,6 +74,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     {
         if (expGemPrefab != null)
         {
+            // TODO: exp -> score
             ExpGem gem = PoolManager.Instance.Spawn(expGemPrefab.GetComponent<ExpGem>());
             gem.transform.position = this.transform.position;
 
