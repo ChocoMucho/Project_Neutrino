@@ -10,10 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f116e563e02b13848920cd58458a7568, type: 3}
-  m_Name: SO_Enemy_Normal
+  m_Name: SO_Enemy_Dash
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataSO
+  Type: 0
   EnemyPrefab: {fileID: 533403307648737898, guid: b387e3cf7aa15ae46987c974a3a365ac, type: 3}
   HP: 5
   Damage: 2
   Speed: 3
   EnemyColor: {r: 0.4339623, g: 0.110537514, b: 0.110537514, a: 0}
+  ExpReward: 0
+  HoldTime: 0
+  ExitDirection: {x: 0, y: 0}
+  rotationSpeed: 90

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPoolable, IDamageable
 {
-    private Transform _playerTransform;
+    public Transform _playerTransform;
 
     [SerializeField] private EnemyDataSO enemyDataSO;
     [SerializeField] private int currentHealth;
@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
 
     [Header("FSM")]
     EnemyStateMachine stateMachine;
+    public Vector2 HoldPosition;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
 
     void Update()
     {
-        RotateTowardPlayer();
+        //RotateTowardPlayer();
         stateMachine.Update();
     }
 
@@ -43,7 +44,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         transform.rotation = Quaternion.Euler(0,0, angle - 90f);
     }
 
-    public void Init()
+    public void Init() // TODO: hold 좌표 여기로
     {
         currentHealth = enemyDataSO.HP;
         speed = enemyDataSO.Speed;
