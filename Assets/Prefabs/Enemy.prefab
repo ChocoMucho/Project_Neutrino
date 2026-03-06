@@ -202,6 +202,7 @@ MonoBehaviour:
   damage: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   expGemPrefab: {fileID: 33380585039300505, guid: 137d5d00253877e4c83867aca6e374fd, type: 3}
+  HoldPosition: {x: 7, y: 3}
 --- !u!114 &2476260300421651521
 MonoBehaviour:
   m_ObjectHideFlags: 0

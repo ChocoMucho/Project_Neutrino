@@ -5,12 +5,14 @@ public class EnemyStateMachine
 {
     EnemyState currentState;
 
-    EnemyEnterState enterState;
-    EnemyHoldState holdState;
-    EnemyAttackState attackState;
-    EnemyExitState exitState;
+    public EnemyEnterState enterState { get; private set; }
+    public EnemyHoldState holdState { get; private set; }
+    public EnemyAttackState attackState { get; private set; }
+    public EnemyExitState exitState { get; private set; }
 
-    private EnemyDataSO data;
+    public EnemyDataSO data { get; private set; }
+
+    public float stateChangeTime { get; private set; }
 
     public EnemyStateMachine(Enemy enemy, EnemyDataSO data)
     {
@@ -22,7 +24,7 @@ public class EnemyStateMachine
         exitState = new EnemyExitState(enemy, this);
     }
 
-    public void Init() // Enemy���� ȣ��
+    public void Init() // Enemy에서 호출
     {
         currentState = enterState;
         currentState.Enter();
@@ -30,8 +32,11 @@ public class EnemyStateMachine
 
     public void ChangeState(EnemyState newState)
     {
+        // TODO: null check
+        Debug.Log($"Changing state from {currentState.GetType().Name} to {newState.GetType().Name}");
         currentState.Exit();
         currentState = newState;
+        stateChangeTime = Time.time; // 상태 전환 시점 기록
         currentState.Enter();
     }
 

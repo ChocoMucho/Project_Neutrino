@@ -10,7 +10,7 @@ public enum EnemyType
 public class EnemyDataSO : ScriptableObject
 {
     [Header("Enemy Type")]
-    public EnemyType enemyType;
+    public EnemyType Type;
 
     public GameObject EnemyPrefab;
     public int HP;
@@ -22,4 +22,5 @@ public class EnemyDataSO : ScriptableObject
     [Header("FSM")]
     public float HoldTime;
     public Vector2 ExitDirection;
+    public float rotationSpeed;
 }

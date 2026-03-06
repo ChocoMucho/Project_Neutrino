@@ -19,7 +19,7 @@ public class EnemyShooter : MonoBehaviour
             shootIntervalTimer -= Time.deltaTime;
             if (shootIntervalTimer <= 0f)
             {
-                Shoot();
+                //Shoot();
                 shootIntervalTimer = shootInterval;
             }
         }

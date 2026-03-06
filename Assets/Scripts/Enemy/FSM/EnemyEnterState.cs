@@ -8,16 +8,18 @@ public class EnemyEnterState : EnemyState
 
     public override void Enter()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Execute()
     {
-        throw new System.NotImplementedException();
+        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, enemy.HoldPosition, 5 * Time.deltaTime);
+        if(Vector2.Distance(enemy.transform.position, enemy.HoldPosition) < 0.1f)
+        {
+            stateMachine.ChangeState(stateMachine.holdState);
+        }
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
     }
 }
