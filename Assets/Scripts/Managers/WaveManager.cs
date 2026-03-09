@@ -29,7 +29,7 @@ public class WaveManager : MonoBehaviour
     {
         Vector3 spawnPos = GetRandomSpawnPos();
         Enemy spawnedEnemy = PoolManager.Instance.Spawn(enemyData.EnemyPrefab.GetComponent<Enemy>());
-        // SpawnµÈ ÀûÀÇ À§Ä¡ ¼³Á¤
+        // Spawnëœ ì ì˜ ìœ„ì¹˜ ì„¤ì •
         spawnedEnemy.transform.position = spawnPos;
         spawnedEnemy.Init();
     }
@@ -37,8 +37,8 @@ public class WaveManager : MonoBehaviour
     public Vector3 GetRandomSpawnPos()
     {
         Vector3 pos = Vector3.zero;
-        // 0~1 »çÀÌÀÇ ·£´ı °ª
-        // ½ºÀ§Ä¡¹®À¸·Î 4±ºµ¥ Áß ÇÑ±ºµ¥ ¼±ÅÃ
+        // 0~1 ì‚¬ì´ì˜ ëœë¤ ê°’
+        // ìŠ¤ìœ„ì¹˜ë¬¸ìœ¼ë¡œ 4êµ°ë° ì¤‘ í•œêµ°ë° ì„ íƒ
         int side = Random.Range(0, 4);
         switch (side)
         {
@@ -59,9 +59,9 @@ public class WaveManager : MonoBehaviour
                 pos.y = 1.1f;
                 break;
         }
-        pos.z = 10f; // Ä«¸Ş¶ó¿¡¼­ ¾î´ÀÁ¤µµ ¶³¾îÁø À§Ä¡
+        pos.z = 10f; // ì¹´ë©”ë¼ì—ì„œ ì–´ëŠì •ë„ ë–¨ì–´ì§„ ìœ„ì¹˜
         Vector3 worldPos = mainCamera.ViewportToWorldPoint(pos);
-        worldPos.z = 0f; // zÃà 0À¸·Î °íÁ¤
+        worldPos.z = 0f; // zì¶• 0ìœ¼ë¡œ ê³ ì •
 
         return worldPos;
     }

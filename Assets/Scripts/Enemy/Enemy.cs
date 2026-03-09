@@ -17,8 +17,11 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     EnemyStateMachine stateMachine;
     public Vector2 HoldPosition;
 
+    private EnemyShooter shooter;
+
     private void Awake()
     {
+        shooter = GetComponent<EnemyShooter>();
         stateMachine = new EnemyStateMachine(this, enemyDataSO);
         stateMachine.Init();
     }
@@ -86,5 +89,14 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
     private void RequestDespawn()
     {
         PoolManager.Instance.Despawn(this);
+    }
+
+    public void TryStartBulletAttack()
+    {
+        if (enemyDataSO == null || enemyDataSO.Type != EnemyType.Bullet) return;
+        if (enemyDataSO.Pattern == null) return;
+        if (shooter == null) return;
+
+        shooter.TryStartPatternAttack(enemyDataSO.Pattern);
     }
 }

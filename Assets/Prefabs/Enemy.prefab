@@ -196,7 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29b7ea068a464e4898bbe52305193e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyDataSO: {fileID: 11400000, guid: 762e0cea098211b42ae3bdaeee6e7ee1, type: 2}
+  _playerTransform: {fileID: 0}
+  enemyDataSO: {fileID: 11400000, guid: 6c736b4a48ef3b04ba6dc87cf90e50b7, type: 2}
   currentHealth: 0
   speed: 0
   damage: 0

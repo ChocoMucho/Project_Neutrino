@@ -12,17 +12,7 @@ public class EnemyExitState : EnemyState
 
     public override void Execute()
     {
-        switch (stateMachine.data.Type)
-        {
-            case EnemyType.Dash:
-                PoolManager.Instance.Despawn(enemy);
-                break;
-            case EnemyType.Bullet:
-                break;
-            default:
-                Debug.LogError("Undefined Enemy Type");
-                break;
-        }
+        PoolManager.Instance.Despawn(enemy);
     }
 
     public override void Exit()
