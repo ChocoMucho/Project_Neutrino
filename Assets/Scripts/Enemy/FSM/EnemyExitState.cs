@@ -12,6 +12,7 @@ public class EnemyExitState : EnemyState
 
     public override void Execute()
     {
+        PoolManager.Instance.Despawn(enemy);
     }
 
     public override void Exit()

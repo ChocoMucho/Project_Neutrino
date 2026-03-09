@@ -21,4 +21,4 @@ MonoBehaviour:
   ExpReward: 0
   HoldTime: 0
   ExitDirection: {x: 0, y: 0}
-  rotationSpeed: 90
+  rotationSpeed: 45
