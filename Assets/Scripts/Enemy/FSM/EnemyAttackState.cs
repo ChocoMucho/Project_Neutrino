@@ -41,7 +41,8 @@ public class EnemyAttackState : EnemyState
             case EnemyType.Dash:
                 // TODO: 적한테 돌진하는 로직
                 DashAttack();
-                CheckOffScreen();
+                if(CheckOffScreen())
+                    stateMachine.ChangeState(stateMachine.exitState);
                 break;
             case EnemyType.Bullet:
                 if (Time.time >= attackEndTime)
@@ -85,12 +86,12 @@ public class EnemyAttackState : EnemyState
             );
     }
 
-    public void CheckOffScreen()
+    public bool CheckOffScreen()
     {
         Vector3 viewPos = Camera.main.WorldToViewportPoint(enemy.transform.position);
         if (viewPos.x < -0.2 || viewPos.x > 1.2 || viewPos.y < -0.2 || viewPos.y > 1.2)
-        {
-            stateMachine.ChangeState(stateMachine.exitState);
-        }
+            return true;
+
+        return false;
     }
 }
