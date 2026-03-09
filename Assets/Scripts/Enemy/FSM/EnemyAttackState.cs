@@ -1,9 +1,9 @@
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemyAttackState : EnemyState
 {
     private Vector2 direction;
+    private float attackEndTime;
 
     public EnemyAttackState(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
@@ -11,7 +11,27 @@ public class EnemyAttackState : EnemyState
 
     public override void Enter()
     {
+        if (stateMachine.data.Type == EnemyType.Bullet)
+        {
+            enemy.TryStartBulletAttack();
 
+            var pattern = stateMachine.data.Pattern;
+            if (pattern != null)
+            {
+                float duration = 0f;
+                if (pattern.waveCount > 0)
+                {
+                    duration = Mathf.Max(0f, (pattern.waveCount - 1) * pattern.fireInterval);
+                }
+
+                duration += 0.1f;
+                attackEndTime = Time.time + duration;
+            }
+            else
+            {
+                attackEndTime = Time.time;
+            }
+        }
     }
 
     public override void Execute()
@@ -25,7 +45,10 @@ public class EnemyAttackState : EnemyState
                     stateMachine.ChangeState(stateMachine.exitState);
                 break;
             case EnemyType.Bullet:
-                
+                if (Time.time >= attackEndTime)
+                {
+                    stateMachine.ChangeState(stateMachine.exitState);
+                }
                 break;
             default:
                 Debug.LogError("Undefined Enemy Type");

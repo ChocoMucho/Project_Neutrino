@@ -19,6 +19,9 @@ public class EnemyDataSO : ScriptableObject
     public Color EnemyColor;
     public int ExpReward;
 
+    [Header("Bullet Attack (Type = Bullet)")]
+    public PatternDataSO Pattern;
+
     [Header("FSM")]
     public float HoldTime;
     public Vector2 ExitDirection;
