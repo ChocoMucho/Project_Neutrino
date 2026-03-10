@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IPoolable, IDamageable
+public class Enemy : MonoBehaviour, IPoolable
 {
     public Transform _playerTransform;
+    private Health health;
 
     [SerializeField] private EnemyDataSO enemyDataSO;
-    [SerializeField] private int currentHealth;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     [SerializeField] private Color color;
@@ -21,8 +21,14 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
 
     private void Awake()
     {
+        health = GetComponent<Health>();
         shooter = GetComponent<EnemyShooter>();
         stateMachine = new EnemyStateMachine(this, enemyDataSO);
+
+        health.OnDeath += () => {
+            ScoreManager.Instance.AddScore(enemyDataSO.ScoreReward);
+        };
+        health.OnDeath += RequestDespawn;
         stateMachine.Init();
     }
 
@@ -47,9 +53,8 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
         transform.rotation = Quaternion.Euler(0,0, angle - 90f);
     }
 
-    public void Init() // TODO: hold 좌표 여기로
+    public void Init()
     {
-        currentHealth = enemyDataSO.HP;
         speed = enemyDataSO.Speed;
         damage = enemyDataSO.Damage;
         color = enemyDataSO.EnemyColor;
@@ -61,29 +66,6 @@ public class Enemy : MonoBehaviour, IPoolable, IDamageable
 
     public void OnDespawn()
     {
-    }
-
-    public void OnDamage(int damageAmount)
-    {
-        currentHealth -= damageAmount;
-        Debug.Log($"{gameObject.name} took {damageAmount} damage. Current health: {currentHealth}");
-        if (currentHealth <= 0)
-        {
-            Die();
-            RequestDespawn();
-        }
-    }
-
-    public void Die()
-    {
-        if (expGemPrefab != null)
-        {
-            // TODO: exp -> score
-            ExpGem gem = PoolManager.Instance.Spawn(expGemPrefab.GetComponent<ExpGem>());
-            gem.transform.position = this.transform.position;
-
-            gem.Init(enemyDataSO.ExpReward);
-        }
     }
 
     private void RequestDespawn()

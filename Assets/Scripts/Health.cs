@@ -8,6 +8,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private int currentHealth;
 
     public Action OnHit; // important
+    public Action OnDeath; // important
 
     void Start()
     {   
@@ -28,6 +29,6 @@ public class Health : MonoBehaviour, IDamageable
     private void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
-        Destroy(gameObject);
+        OnDeath?.Invoke();
     }
 }
