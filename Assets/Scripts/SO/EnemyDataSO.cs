@@ -18,6 +18,7 @@ public class EnemyDataSO : ScriptableObject
     public int Speed;
     public Color EnemyColor;
     public int ExpReward;
+    public int ScoreReward;
 
     [Header("Bullet Attack (Type = Bullet)")]
     public PatternDataSO Pattern;

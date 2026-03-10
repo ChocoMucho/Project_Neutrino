@@ -19,6 +19,7 @@ MonoBehaviour:
   Speed: 3
   EnemyColor: {r: 0.79622644, g: 0.7398276, b: 0.046571694, a: 0}
   ExpReward: 0
+  ScoreReward: 100
   Pattern: {fileID: 11400000, guid: 6b07d5c2997ebd94688cc08ce81f5a5b, type: 2}
   HoldTime: 0
   ExitDirection: {x: 0, y: 0}
