@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour, IPoolable
     public Transform _playerTransform;
     private Health health;
 
-    [SerializeField] private EnemyDataSO enemyDataSO;
+    private EnemyDataSO enemyData;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     [SerializeField] private Color color;
@@ -23,13 +23,12 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         health = GetComponent<Health>();
         shooter = GetComponent<EnemyShooter>();
-        stateMachine = new EnemyStateMachine(this, enemyDataSO);
-
+        
         health.OnDeath += () => {
-            ScoreManager.Instance.AddScore(enemyDataSO.ScoreReward);
+            ScoreManager.Instance.AddScore(enemyData.ScoreReward);
         };
         health.OnDeath += RequestDespawn;
-        stateMachine.Init();
+        stateMachine = new EnemyStateMachine(this);
     }
 
     void Start()
@@ -53,19 +52,29 @@ public class Enemy : MonoBehaviour, IPoolable
         transform.rotation = Quaternion.Euler(0,0, angle - 90f);
     }
 
-    public void Init()
+    public void Init(EnemyDataSO enemyData)
     {
-        speed = enemyDataSO.Speed;
-        damage = enemyDataSO.Damage;
-        color = enemyDataSO.EnemyColor;
+        if(enemyData == null)
+        {
+            Debug.LogError("EnemyDataSO is null!");
+            return;
+        }
+        this.enemyData = enemyData;
+        speed = this.enemyData.Speed;
+        damage = this.enemyData.Damage;
+        color = this.enemyData.EnemyColor;
+
+        stateMachine.Init(enemyData);
     }
 
     public void OnSpawn()
     {
+        WaveManager.Instance.AddSpawnCount();
     }
 
     public void OnDespawn()
     {
+        WaveManager.Instance.SubtractSpawnCount();
     }
 
     private void RequestDespawn()
@@ -75,10 +84,10 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void TryStartBulletAttack()
     {
-        if (enemyDataSO == null || enemyDataSO.Type != EnemyType.Bullet) return;
-        if (enemyDataSO.Pattern == null) return;
+        if (enemyData == null || enemyData.Type != EnemyType.Bullet) return;
+        if (enemyData.Pattern == null) return;
         if (shooter == null) return;
 
-        shooter.TryStartPatternAttack(enemyDataSO.Pattern);
+        shooter.TryStartPatternAttack(enemyData.Pattern);
     }
 }

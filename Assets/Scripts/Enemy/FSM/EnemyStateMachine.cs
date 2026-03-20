@@ -14,18 +14,21 @@ public class EnemyStateMachine
 
     public float stateChangeTime { get; private set; }
 
-    public EnemyStateMachine(Enemy enemy, EnemyDataSO data)
+    public EnemyStateMachine(Enemy enemy)
     {
-        this.data = data;
-
         enterState = new EnemyEnterState(enemy, this);
         holdState = new EnemyHoldState(enemy, this);
         attackState = new EnemyAttackState(enemy, this);
         exitState = new EnemyExitState(enemy, this);
     }
 
-    public void Init() // Enemy에서 호출
+    public void Init(EnemyDataSO newData) // Enemy에서 호출
     {
+        this.data = newData;
+        if(currentState != null) 
+        {
+            currentState.Exit();
+        }
         currentState = enterState;
         currentState.Enter();
     }

@@ -1,43 +1,80 @@
+using System.Collections;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    [Header("Spawn Settings")]
-    [SerializeField] private EnemyDataSO enemyData;
-    [SerializeField] private float spawnInterval = 2.0f;
-    [SerializeField] FormationDataSO formationData;
+    public static WaveManager Instance { get; private set; }
 
-    private float timer = 0f;
     private Camera mainCamera;
+
+    [Header("Wave Data")]
+    [SerializeField] private WaveDataSO waveData;
+    [SerializeField] private int spawnCount;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
         mainCamera = Camera.main;
-        timer = spawnInterval; // Immediate spawn on start
+
+        StartWave();
     }
 
     void Update()
     {
-        timer += Time.deltaTime;
+        /*timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
             SpawnEnemy();
             timer = 0f;
+        }*/
+    }
+
+    public void StartWave()
+    {
+        StartCoroutine(ExecuteStageWaves());
+    }
+
+    private IEnumerator ExecuteStageWaves()
+    {
+        foreach (var wave in waveData.waveDataList)
+        {
+            SpawnEnemy(wave.formationData);
+
+            if (wave.isClearWait)
+            {
+                yield return new WaitUntil(() => spawnCount <= 0);
+            }
+            else
+            {
+                yield return new WaitForSeconds(wave.waveDuration);
+            }
         }
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(FormationDataSO formationData)
     {
         // SO에서 방향 읽고 viewpoint로 소환 지점 잡기
         Vector2 spawnSidePos = GetSpawnSidePos(formationData.spawnSide);
         // points 만큼 반복
-        for(int i = 0; i < formationData.points.Count; ++i)
+        for (int i = 0; i < formationData.points.Count; ++i)
         {
             Vector2 holdPoint = formationData.points[i];
             var enemy = PoolManager.Instance.Spawn(formationData.enemyData.EnemyPrefab.GetComponent<Enemy>());
             enemy.HoldPosition = holdPoint;
             enemy.transform.position = spawnSidePos;
-            enemy.Init();
+            enemy.Init(formationData.enemyData);
         }
     }
 
@@ -71,4 +108,6 @@ public class WaveManager : MonoBehaviour
         return worldPos;
     }
 
+    public void AddSpawnCount() => spawnCount++;
+    public void SubtractSpawnCount() => spawnCount--;
 }
