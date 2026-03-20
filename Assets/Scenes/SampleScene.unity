@@ -255,6 +255,8 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 6c736b4a48ef3b04ba6dc87cf90e50b7, type: 2}
   spawnInterval: 1000
   formationData: {fileID: 11400000, guid: 1bd2321a97be2764d98ecf4f657c56c5, type: 2}
+  waveData: {fileID: 11400000, guid: 78b3e4bfad7d4d844a921537430dbf68, type: 2}
+  remainingEnemies: 0
 --- !u!4 &104028322
 Transform:
   m_ObjectHideFlags: 0
@@ -611,7 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormationPreview
   formationData: {fileID: 11400000, guid: 1bd2321a97be2764d98ecf4f657c56c5, type: 2}
-  handleSize: 0.09
+  handleSize: 0.1
 --- !u!4 &919482234
 Transform:
   m_ObjectHideFlags: 0

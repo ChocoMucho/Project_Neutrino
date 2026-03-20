@@ -10,7 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 897ab8bcdfd658a47ae66ce34425f1a9, type: 3}
-  m_Name: FormationDataSO
+  m_Name: SO_Formation_Test2
   m_EditorClassIdentifier: Assembly-CSharp::FormationDataSO
+  enemyData: {fileID: 11400000, guid: 6c736b4a48ef3b04ba6dc87cf90e50b7, type: 2}
+  spawnSide: 0
   points:
-  - {x: 2, y: 2}
+  - {x: -6.9013734, y: 2.9405427}
+  - {x: -4.924614, y: 3.0059326}
+  - {x: -6.9285684, y: 1.1085716}
+  - {x: -4.881979, y: 0.9380213}
