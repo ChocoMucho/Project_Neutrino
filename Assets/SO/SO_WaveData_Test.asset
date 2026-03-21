@@ -22,3 +22,30 @@ MonoBehaviour:
   - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
     waveDuration: 5
     isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0
+  - formationData: {fileID: 11400000, guid: a0130a9827df59943961c6d717fd9858, type: 2}
+    waveDuration: 5
+    isClearWait: 0

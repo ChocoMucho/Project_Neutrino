@@ -16,7 +16,7 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 533403307648737898, guid: b387e3cf7aa15ae46987c974a3a365ac, type: 3}
   HP: 7
   Damage: 1
-  Speed: 3
+  Speed: 5
   EnemyColor: {r: 0.79622644, g: 0.7398276, b: 0.046571694, a: 0}
   ExpReward: 0
   ScoreReward: 100
