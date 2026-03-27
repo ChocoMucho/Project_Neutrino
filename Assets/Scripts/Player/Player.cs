@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerGlitchEffect glitchEffect;
 
     [SerializeField] private float invincibleDuration = 0.5f;
+    public bool IsInvincible { get; private set; }
 
     private Health health;
 
@@ -31,11 +32,13 @@ public class Player : MonoBehaviour
         {
             collider.enabled = false;
             glitchEffect.SetGlitch(true);
+            IsInvincible = true;
 
             yield return new WaitForSeconds(invincibleDuration);
 
             collider.enabled = true;
             glitchEffect.SetGlitch(false);
+            IsInvincible = false;
         }
     }
 }
