@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,5 +15,8 @@ public class UI_Score : MonoBehaviour
     public void UpdateScoreText()
     {
         text.text = ScoreManager.Instance.ScoreAmount.ToString();
+        transform.DOKill();
+        transform.localScale = Vector3.one;
+        transform.DOScale(1.5f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 }
