@@ -5,7 +5,7 @@ public enum SceneType
 { 
     Unknown, 
     LobbyScene, 
-    GameScene 
+    InGameScene 
 }
 
 public class SceneManagerEx : MonoBehaviour
