@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897ab8bcdfd658a47ae66ce34425f1a9, type: 3}
+  m_Name: SO_Frmtn_T_Bullet_halfcircle
+  m_EditorClassIdentifier: Assembly-CSharp::FormationDataSO
+  enemyData: {fileID: 11400000, guid: 6c736b4a48ef3b04ba6dc87cf90e50b7, type: 2}
+  spawnSide: 3
+  points:
+  - {x: 7.0026517, y: -0.004480753}
+  - {x: 6.0130806, y: 1.9497931}
+  - {x: 4.0301275, y: 2.9843092}
+  - {x: 0.047705412, y: 3.9916348}
+  - {x: -4.022239, y: 3.0053067}
+  - {x: -6.0156813, y: 1.9822404}
+  - {x: -6.9876633, y: 0.04091248}

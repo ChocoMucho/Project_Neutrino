@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843eab2dbb8ce484b88e47687534ef9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormationPreview
-  formationData: {fileID: 11400000, guid: ea9ee59d70ebff044a1efd12a331b87a, type: 2}
+  formationData: {fileID: 11400000, guid: c20ead5e70f67264cb9debd69df5838a, type: 2}
   handleSize: 0.1
 --- !u!4 &919482234
 Transform:

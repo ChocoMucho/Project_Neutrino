@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 897ab8bcdfd658a47ae66ce34425f1a9, type: 3}
-  m_Name: SO_Formation_Test4
+  m_Name: SO_Frmtn_LT_Dash_triangle
   m_EditorClassIdentifier: Assembly-CSharp::FormationDataSO
   enemyData: {fileID: 11400000, guid: 762e0cea098211b42ae3bdaeee6e7ee1, type: 2}
   spawnSide: 2
   points:
-  - {x: -6.0567946, y: -2.8823416}
-  - {x: -3.9051044, y: -1.908166}
-  - {x: -4.903555, y: -3.9716554}
+  - {x: -5.9965105, y: 2.9989316}
+  - {x: -3.9650187, y: 2.0166311}
+  - {x: -4.9485836, y: 3.9683833}
