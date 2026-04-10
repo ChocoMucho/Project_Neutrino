@@ -7,7 +7,6 @@ public abstract class BaseUI : MonoBehaviour
 {
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
 
-    // 컴포넌트 자동 매핑 (Enum 타입 이용)
     protected void Bind<T>(Type type) where T : UnityEngine.Object
     {
         string[] names = Enum.GetNames(type);
@@ -30,7 +29,6 @@ public abstract class BaseUI : MonoBehaviour
         return null;
     }
 
-    // 헬퍼 메서드: 이름으로 자식 컴포넌트 찾기
     private T FindChild<T>(GameObject go, string name, bool recursive) where T : UnityEngine.Object
     {
         if (go == null) return null;

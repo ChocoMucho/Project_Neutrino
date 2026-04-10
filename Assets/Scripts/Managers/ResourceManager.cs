@@ -17,11 +17,14 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public T Load<T>(string path) where T : Object
+    private T Load<T>(string path) where T : Object
     {
         return Resources.Load<T>(path);
     }
 
+    /// <summary>
+    /// path에는 Prefabs이후 경로부터 기재하라
+    /// </summary>
     public GameObject Instantiate(string path, Transform parent = null)
     {
         GameObject prefab = Load<GameObject>($"Prefabs/{path}");
